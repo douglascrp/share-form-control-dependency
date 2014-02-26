@@ -22,7 +22,7 @@
 </#if>
 <#if form.mode != "view">
    <script type="text/javascript">
-      var GROUP_LABEL_SEPARATOR = " - ";
+      var GROUP_LABEL_SEPARATOR = "!";
       <#list field.control.params.filteredProperty?split(",") as filtProp>
          var allPropertyOptions${filtProp} = [];
       </#list>
@@ -141,10 +141,7 @@
                </#list>
             </#if>
          </#if>
-         <#assign splittedNamedValue=valueToShow?html?split(" - ")>
-         <span class="viewmode-value">
-            <#if splittedNamedValue[1]??>${splittedNamedValue[1]}<#else>none</#if>
-         </span>
+         <span class="viewmode-value">${valueToShow?html}</span>
       </div>
    <#else>
       <label for="${fieldHtmlId}">${field.label?html}:<#if field.mandatory><span class="mandatory-indicator">${msg("form.required.fields.marker")}</span></#if></label>
@@ -157,8 +154,8 @@
                <#if field.disabled  && !(field.control.params.forceEditable?? && field.control.params.forceEditable == "true")>disabled="true"</#if>>
                <#list field.control.params.options?split(optionSeparator) as nameValue>
                   <option value="${nameValue?html?split("|")[0]}"<#if nameValue?split("|")[0] == fieldValue?string || (fieldValue?is_number && fieldValue?c == nameValue?split("|")[0])> selected="selected"</#if>>
-                     <#if nameValue?index_of(" - ") != -1>
-                        ${nameValue?split(" - ")[1]?split("|")[0]}
+                     <#if nameValue?index_of("!") != -1>
+                        ${nameValue?split("!")[1]?split("|")[1]}
                      </#if>
                   </option>
                </#list>

@@ -1,0 +1,94 @@
+<model name="sample:sampleModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+   <description>Sample Model</description>
+   <author>Rui Fernandes</author>
+   <published>2012-01-24</published>
+   <version>1.0</version>
+
+   <imports>
+      <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+      <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+   </imports>
+
+   <namespaces>
+      <namespace uri="http://www.alfresco.org/model/sample/1.0" prefix="sample" />
+   </namespaces>
+   
+   <constraints>
+      <constraint name="sample:parentConstraint" type="LIST">
+         <parameter name="allowedValues">
+           <list>
+               <value></value>
+               <value>1 - VALUE A</value>
+               <value>2 - VALUE B</value>
+               <value>3 - VALUE C</value>
+           </list>
+         </parameter>
+      </constraint>
+      <constraint name="sample:constraintOne" type="LIST">
+         <parameter name="allowedValues">
+           <list>
+               <value></value>
+               <value>1 - SUBVALUE ONE AX</value>
+               <value>1 - SUBVALUE ONE AY</value>
+               <value>1 - SUBVALUE ONE AZ</value>
+               <value>2 - SUBVALUE ONE BX</value>
+               <value>2 - SUBVALUE ONE BY</value>
+               <value>3 - SUBVALUE ONE CY</value>
+               <value>3 - SUBVALUE ONE CZ</value>
+           </list>
+         </parameter>
+      </constraint>
+      <constraint name="sample:constraintTwo" type="LIST">
+         <parameter name="allowedValues">
+           <list>
+               <value></value>
+               <value>1.2.3 - SUBVALUE TWO ABCX</value>
+               <value>2.3 - SUBVALUE TWO BCX</value>
+               <value>2.3 - SUBVALUE TWO BCY</value>
+               <value>2.3 - SUBVALUE TWO BCZ</value>
+               <value>3 - SUBVALUE TWO CX</value>
+               <value>3 - SUBVALUE TWO CY</value>
+               <value>3 - SUBVALUE TWO CZ</value>
+           </list>
+         </parameter>
+      </constraint>
+   </constraints>
+   <types>
+      <type name="sample:sampleType">
+         <title>Sample Type</title>
+         <parent>cm:content</parent>
+         <properties>
+            <property name="sample:mainProperty">
+               <title>Main Property</title>
+               <type>d:text</type>
+               <mandatory>true</mandatory>
+               <constraints>
+                   <constraint ref="sample:parentConstraint" />
+               </constraints>
+            </property>
+            <property name="sample:propertyOne">
+               <title>Property One</title>
+               <type>d:text</type>
+               <mandatory>true</mandatory>
+               <constraints>
+                   <constraint ref="sample:constraintOne" />
+               </constraints>
+            </property>
+            <property name="sample:propertyTwo">
+               <title>Property Two</title>
+               <type>d:text</type>
+               <mandatory>false</mandatory>
+               <constraints>
+                   <constraint ref="sample:constraintTwo" />
+               </constraints>
+            </property>
+            <property name="sample:propertyThree">
+               <title>Property Three</title>
+               <type>d:text</type>
+               <mandatory>false</mandatory>
+            </property>
+         </properties>
+      </type>
+   </types>
+</model>

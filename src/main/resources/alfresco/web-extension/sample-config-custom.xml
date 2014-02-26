@@ -1,0 +1,67 @@
+<alfresco-config>
+  <config evaluator="string-compare" condition="DocumentLibrary">
+    <types>
+      <type name="cm:content">
+        <subtype name="sample:sampleType" />
+      </type>
+      <type name="cm:folder"/>
+    </types>
+   </config>
+  <config evaluator="model-type" condition="sample:sampleType">
+    <forms>
+      <form id="search">
+        <field-visibility>
+          <show id="sample:mainProperty" />
+          <show id="sample:propertyOne" />
+          <show id="sample:propertyTwo" />
+        </field-visibility>
+        <appearance>          
+          <field id="sample:mainProperty">
+            <control template="/org/alfresco/components/form/controls/parent-filter-selectone.ftl">
+              <control-param name="filteredProperty">sample_propertyOne,sample_propertyTwo</control-param>
+            </control>
+          </field>
+          <field id="sample:propertyOne">
+            <control template="/org/alfresco/components/form/controls/filtered-selectone.ftl"/>
+          </field>
+          <field id="sample:propertyTwo">
+            <control template="/org/alfresco/components/form/controls/filtered-selectone.ftl"/>
+          </field>
+        </appearance>
+      </form>
+    </forms>
+  </config>
+  <config evaluator="node-type" condition="sample:sampleType">
+    <forms>
+      <form>
+        <field-visibility>
+          <show id="sample:mainProperty" />
+          <show id="sample:propertyOne" />
+          <show id="sample:propertyTwo" />
+          <show id="sample:propertyThree" />
+        </field-visibility>
+        <appearance>
+          <set id="sample-2col" template="/org/alfresco/components/form/2-column-set.ftl"/>
+          <field id="sample:mainProperty" set="sample-2col">
+            <control template="/org/alfresco/components/form/controls/parent-filter-selectone.ftl">
+              <control-param name="filteredProperty">sample_propertyOne,sample_propertyTwo</control-param>
+            </control>
+          </field>
+          <field id="sample:propertyOne" set="sample-2col">
+            <control template="/org/alfresco/components/form/controls/filtered-selectone.ftl"/>
+          </field>
+          <field id="sample:propertyTwo" set="sample-2col">
+            <control template="/org/alfresco/components/form/controls/filtered-selectone.ftl"/>
+          </field>
+        </appearance>
+      </form>
+    </forms>
+  </config>
+  <config evaluator="string-compare" condition="AdvancedSearch">
+    <advanced-search>
+      <forms>
+        <form label="Sample Content Type" description="Searches the sample content type documents.">sample:sampleType</form>
+      </forms>
+    </advanced-search>
+  </config>
+</alfresco-config>
